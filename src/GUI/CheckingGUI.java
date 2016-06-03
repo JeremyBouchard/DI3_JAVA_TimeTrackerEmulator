@@ -1,11 +1,9 @@
-//Test my git project
-
-
 package GUI;
 
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -17,6 +15,8 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 public class CheckingGUI extends JFrame {
+	public CheckingGUI() {
+	}
 
 	private JPanel panel = new JPanel(new GridBagLayout());
 	List<JLabel> list = new ArrayList<JLabel>();
@@ -24,6 +24,8 @@ public class CheckingGUI extends JFrame {
 	 * list(1) ->RoundedTimeLabel
 	 * list(2) ->DateLabel
 	 */
+	Container contenu = getContentPane() ;
+	
 
 	public boolean make(){
 		
@@ -40,7 +42,6 @@ public class CheckingGUI extends JFrame {
 		submitButton();
 
 		ClockTimer();
-		
 		return true;
 	}
 
@@ -67,16 +68,16 @@ public class CheckingGUI extends JFrame {
 		Date realTime=new Date();
 		Date roundedTime = new Date(900000 * ((realTime.getTime() + 450000) / 900000));
 
-		list.get(0).setText(realTimeFormat.format(realTime));
-		list.get(1).setText(roundedTimeFormat.format(roundedTime));
-		list.get(2).setText(dateFormat.format(realTime));
+		list.get(1).setText(realTimeFormat.format(realTime));
+		list.get(2).setText(roundedTimeFormat.format(roundedTime));
+		list.get(0).setText(dateFormat.format(realTime));
 	}
 
 	private void setWindows(){
 
 		setVisible(true);
 		setContentPane(panel);
-		setTitle("Time Tracker Emulator");
+		setTitle("Time Tracker Emulator 1.0");
 		setSize(300 ,200);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//TODO : Serialisation
@@ -104,7 +105,7 @@ public class CheckingGUI extends JFrame {
 		constrains.anchor=GridBagConstraints.CENTER;
 		panel.add(date, constrains);
 
-		list.add(date);
+		list.add(date);//list[0]
 		
 	}
 
@@ -128,7 +129,7 @@ public class CheckingGUI extends JFrame {
 		constrains.anchor=GridBagConstraints.EAST;
 		panel.add(realTime, constrains);
 
-		list.add(realTime);
+		list.add(realTime);//list[1]
 
 	}
 
@@ -156,7 +157,7 @@ public class CheckingGUI extends JFrame {
 
 		checkingTime.setForeground(Color.red);
 
-		list.add(checkingTime);
+		list.add(checkingTime);//list[2]
 
 	}
 
